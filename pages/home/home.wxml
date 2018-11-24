@@ -1,0 +1,16 @@
+<view class='home'>
+  <view class='home_1'>欢迎来到{{hoem}}</view> 
+  <button  class='owner' wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" hover-class="none">
+      <image  class='ownerImg' src='../../images/Group.png'></image>
+      <view class='ownerTitle'>访问业主</view>
+  </button>
+  <button  class='owner'  wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo1" hover-class="none">
+      <image  class='ownerImg' src='../../images/Group1.png'></image>
+      <view class='ownerTitle'>访问物业</view>
+  </button>
+  <button  class='car'  wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo2" hover-class="none">
+      <image class='carImg' src='../../images/Group2.png'></image>
+      <view class='carTitleT'>停车场</view>
+  </button>
+  <view wx:else>请升级微信版本</view>
+</view>

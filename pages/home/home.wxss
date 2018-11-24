@@ -1,0 +1,58 @@
+.home {
+  width: 83%;
+  margin: 0 auto;
+}
+.home_1 {
+  height:53rpx;
+  font-size:32rpx;
+  color:#000000;
+  line-height:45rpx;
+  font-family:PingFangSC-Regular;
+}
+.owner {
+  width:234rpx;
+  height:161rpx;
+  background:linear-gradient(180deg,rgba(34,212,147,1) 0%,rgba(0,191,190,1) 100%);
+  border-radius:10rpx;
+  margin: 27rpx;
+  margin-left: 0rpx;
+  position: relative;
+}
+.ownerImg {
+  width:56rpx;
+  height:56rpx;
+  position: absolute;
+  top: 27rpx;
+  left: 40%;
+}
+.ownerTitle, .carTitle {
+  color: #ffffff;
+  font-size:32rpx;
+  float: left;
+  margin-top: 80rpx;
+  margin-left: 33rpx;
+}
+.car {
+  width:357rpx;
+  height:345rpx;
+  background:linear-gradient(135deg,rgba(63,191,255,1) 0%,rgba(0,201,210,1) 100%);
+  border-radius:10rpx;
+  float: right;
+  margin-top: -370rpx;
+  position: relative;
+}
+.carImg {
+  width:54rpx;
+  height:44rpx;
+  padding: 119rpx 130rpx 0rpx;
+  padding-bottom: 17rpx;
+}
+.carTitleT {
+  height:45rpx;
+  font-size:32rpx;
+  line-height: 45rpx;
+  color: #ffffff;
+  position: absolute;
+  top: 180rpx;
+  left: 135rpx;
+}

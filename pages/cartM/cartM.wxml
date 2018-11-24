@@ -1,0 +1,22 @@
+<view class='record' wx:for="{{ record }}"  wx:key="index">
+    <view>
+        <text class='record_1'>{{item.carNum }}</text>
+        <text class='record_2'>{{ item.serviceHoursAndMinute }}</text>
+        <text class='record_3'>{{ item.serviceDay}}</text>
+        <text class='record_5'>{{ item.serviceTime }}</text>
+        <text class='record_6'>{{ item.totalFee }}元</text>
+    </view>
+</view>
+<view class='record'>
+    <view wx:if="{{ record.length === 0 }}">
+        <text class='record_1'>--</text>
+        <text class='record_2'>--</text>
+        <text class='record_3'>--</text>
+        <text class='record_5'>--</text>
+        <text class='record_6'>--元</text>
+
+    </view>
+</view>
+
+
+

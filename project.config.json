@@ -1,0 +1,109 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": false,
+		"minified": true,
+		"newFeature": true,
+		"uglifyFileName": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.98",
+	"appid": "wx8af403e54636eeac",
+	"projectname": "pm-minicode",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 9,
+			"list": [
+				{
+					"id": -1,
+					"name": "支付页面",
+					"pathName": "pages/payment/payment",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "首页",
+					"pathName": "pages/home/home",
+					"query": "scene=30",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "访客记录",
+					"pathName": "pages/owner/owner",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": 3,
+					"name": "访问业主信息",
+					"pathName": "pages/visitT/visitT",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "填写申请页面",
+					"pathName": "pages/visitApply/visitApply",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": 5,
+					"name": "车辆管理",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "车辆登记",
+					"pathName": "pages/plate-input/plate-input",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "车费记录",
+					"pathName": "pages/cartM/cartM",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "车费记录",
+					"pathName": "pages/cartM/cartM",
+					"query": "",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "访问物业",
+					"pathName": "pages/tenement/tenement"
+				}
+			]
+		}
+	}
+}
