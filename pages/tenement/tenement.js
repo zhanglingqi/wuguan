@@ -9,6 +9,9 @@ Page({
     limit: 999999
   },
   getGrounpList: function () {
+    wx.showLoading({
+      title: 'loading...',
+    });
     var that = this;
     var https = app.globalData.url;
     wx.request({
@@ -31,6 +34,7 @@ Page({
             record: res.data.data
           })
         }
+        wx.hideLoading()
       }
     })
   },
@@ -52,7 +56,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getGrounpList()
+    var that = this;
+    var https = app.globalData.url;
+      wx.login({
+        success: function (res) {
+          wx.getUserInfo({
+            success: function (resquest) {
+              wx.request({
+                url: https + '/carparkMini/getWxUserInfo',
+                method: 'POST',
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded',
+                },
+                data: {
+                  code: res.code,
+                  encryptedData: resquest.encryptedData,
+                  iv: resquest.iv
+                },
+                success: function (res) {
+                  console.log(res)
+                  if (res.data.code === 1000) {
+                    app.data.openid = res.data.data.openid;
+                    app.data.unionid = res.data.data.unionid;
+                  }
+                  that.getGrounpList()
+                }
+              })
+            }
+          })
+        }
+      })
   },
 
   /**

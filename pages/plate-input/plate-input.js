@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
     data: {
         keyValue: {
@@ -10,7 +11,7 @@ Page({
             keyLetterValue1: '90QWERTY',
             keyLetterValue2: 'UIOPASDF',
             keyLetterValue3: 'GHJKLZXC',
-            keyLetterValue4: 'VBNM',
+            keyLetterValue4: 'VBNM警',
             showkKeyboardType: 1, //1是省份键盘 0是数字字母键盘
             carNumber:''
         },
@@ -82,13 +83,13 @@ Page({
         var paltes = this.data.inputPlate.plates;
         var pai = paltes.join("");
         wx.setStorage({
-          key: 'carpai',
+          key: app.data.openid + app.data.id + 1,
           data: pai,
         })
         var plate = paltes.splice(2,0,'·');
         var chepai = this.data.inputPlate.plates.join("")
         wx.setStorage({
-          key: 'carNo',
+          key: app.data.openid + app.data.id,
           data: chepai
         })
       } else {

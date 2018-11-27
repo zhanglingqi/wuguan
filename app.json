@@ -3,16 +3,16 @@
     "pages/home/home",
     "pages/owner/owner",
     "pages/visitT/visitT",
-    "pages/visitF/visitF",
     "pages/tenement/tenement",
     "pages/tenementT/tenementT",
-    "pages/tenementF/tenementF",
     "pages/visitApply/visitApply",
     "pages/tenementApply/tenementApply",
     "pages/index/index",
     "pages/payment/payment",
     "pages/cartM/cartM",
-    "pages/plate-input/plate-input"
+    "pages/plate-input/plate-input",
+    "pages/plateVinput/plateVinput",
+    "pages/plateMinput/plateMinput"
   ],
   "window": {
     "backgroundTextStyle": "dark",

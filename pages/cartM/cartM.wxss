@@ -42,5 +42,12 @@
   right: 39rpx;
   font-size: 36rpx;
 }
+.bacnon {
+  font-size: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80rpx;
+}
 
 

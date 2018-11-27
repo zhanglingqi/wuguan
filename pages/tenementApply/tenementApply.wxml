@@ -23,7 +23,7 @@
               <text>（选填）</text>
             </picker>
             </view>
-            <input class='ownerVisit_3' placeholder='请输入（进出车场凭证）' bindinput="carNumber"></input>
+            <input class='ownerVisit_3' disabled='false' placeholder='请输入（进出车场凭证）' value='{{car}}' catchtap='carTab'></input>
             <input class='ownerVisit_3' placeholder='请输入' bindinput="carText"></input>
         </view> 
     </view>

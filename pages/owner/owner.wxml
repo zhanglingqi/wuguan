@@ -14,13 +14,8 @@
             </view>
           </navigator>
       </view>
-      <view class='owner' url='../visitT/visitT' wx:if="{{record.length == 0}}" >
-          <view class='owner_1'> 访问 ----</view>
-          <view class='owner_2'>-------- ------------</view>
-          <view class='tiaozhuan' >
-              <view class='tiaozhuan_1'>--------</view>
-              <view class='iconfont icon-youjiantou tiaozhuan_2'></view>
-          </view>
+      <view class='owner' url='../visitT/visitT' wx:if="{{record == null}}" >
+          <view class='bacnon' >暂无数据，请点击下方添加按添加信息</view>
       </view>
     </scroll-view>
     </view> 

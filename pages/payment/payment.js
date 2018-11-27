@@ -28,7 +28,8 @@ Page({
     moneyEnd:0,
     // 订单id
     orderId:'',
-    unionid: ''
+    // 查询订单id
+    out_trade_no: ''
   },
   onTapDayWeather() {
     const that = this;
@@ -64,40 +65,80 @@ Page({
             method: 'POST',
             //请求发送成功后的数据
             success(resS) {
-              const payargs = resS.data.data;
-              wx.requestPayment({
-                timeStamp: payargs.timeStamp,
-                nonceStr: payargs.nonceStr,
-                package: payargs.package,
-                signType: payargs.signType,
-                paySign: payargs.paySign
-              });
-              wx.request({
-                url: https1 + '/spPay/orderquery',
-                method: 'POST',
-                header: {
-                  'content-type': 'application/x-www-form-urlencoded',
-                },
-                data: {
-                  out_trade_no: that.orderId
-                },
-                success: function (res) {
-                  if (res.code === 1000) {
-                    wx.navigateBack({
-                      delta: 1
+              if (resS.data.code === 1000) {
+                var payargs = resS.data.data;
+                wx.requestPayment({
+                  timeStamp: payargs.timeStamp,
+                  nonceStr: payargs.nonceStr,
+                  package: payargs.package,
+                  signType: payargs.signType,
+                  paySign: payargs.paySign,
+                  success:function() {
+                    wx.showToast({
+                      title: '支付成功',
+                      icon: 'none',
+                      duration: 1000,
+                      mask: true
                     })
-                  }
-                }
-              })
-
+                    setTimeout(function() {
+                    wx.navigateBack({
+                        delta: 1
+                      })
+                    },1000)
+                  },
+                  fail:function() {
+                    wx.showToast({
+                      title: '支付失败',
+                      icon: 'none',
+                      duration: 1000,
+                      mask: true
+                    })
+                  },
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.message,
+                  icon: 'none',
+                  duration: 1000,
+                  mask: true
+                })
+              }
               that.setData({
                 loading: false
               })
-            }
+            },
+            fail:function() {
+              that.setData({
+                loading: false
+              })
+            },
           })
         }
       }
     })
+    // wx.request({
+    //   url: https1 + '/spPay/orderquery',
+    //   method: 'POST',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //   },
+    //   data: {
+    //     out_trade_no: that.data.out_trade_no
+    //   },
+    //   success: function (res) {
+    //     console.log(res)
+    //     if (res.code === 1000) {
+    //       console.log("支付成功" + res.code)
+    //       wx.navigateBack({
+    //         delta: 1
+    //       })
+    //     }
+    //   },
+      
+    // })
+    // that.setData({
+    //   loading: false
+    // })
   },
   //点击我显示底部弹出框
   clickme: function () {
@@ -181,14 +222,6 @@ Page({
   onLoad: function (options) {
     console.log(options)
     var that = this;
-    wx.getStorage({
-      key: 'unionid',
-      success: function (res) {
-        that.setData({
-          unionid: res.data
-        })
-      },
-    })    
     that.setData({
       carpai: options.carNum,
       hour: options.hour,
@@ -196,7 +229,8 @@ Page({
       time2: options.serviceTime,
       time3: options.serviceHoursAndMinute,
       moneyEnd: options.totalFee,
-      orderId: options.orderId
+      orderId: options.orderId,
+      out_trade_no: options.out_trade_no
     })
     
     
@@ -206,23 +240,20 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // this.setData({
-    //   moneyEnd: this.data.moneyStart
-    // })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    console.log('inshow' + this.data.orderId)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    console.log('onhide' + this.data.orderId)
   },
 
   /**

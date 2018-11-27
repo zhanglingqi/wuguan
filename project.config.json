@@ -34,7 +34,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
@@ -101,7 +101,22 @@
 				{
 					"id": -1,
 					"name": "访问物业",
-					"pathName": "pages/tenement/tenement"
+					"pathName": "pages/tenement/tenement",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "添加物业访客",
+					"pathName": "pages/tenementApply/tenementApply",
+					"query": "",
+					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "停车场收费列表",
+					"pathName": "pages/cartM/cartM",
+					"query": "",
+					"scene": "1011"
 				}
 			]
 		}

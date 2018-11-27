@@ -9,13 +9,13 @@ Page({
     time: '00:00',
     time1: '24:00',
     // 姓名
-    username:'',
+    username: '',
     // 手机号
-    userphone:'',
+    userphone: '',
     // 车牌
-    car:'',
+    car: '',
     // 访问原因
-    text:''
+    text: ''
   },
   bindUser: function bindUser(e) {
     var val = e.detail.value;
@@ -29,61 +29,115 @@ Page({
       userphone: val
     });
   },
-  carNumber: function bindUser(e) {
-    var val = e.detail.value;
-    this.setData({
-      car: val
-    });
-  },
   carText: function bindUser(e) {
     var val = e.detail.value;
     this.setData({
       text: val
     });
   },
-  login:function() {
+  carTab: function() {
+    var that = this;
+    wx.navigateTo({
+      url: '/pages/plateMinput/plateMinput?car=' + that.data.car
+    })
+  },
+  login: function() {
     var https = app.globalData.url;
     var that = this;
-    wx.request({
-      url: https + '/visitorMini/applyVisitProperty',
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      data:{
-        villageId: app.data.id,
-        visitorUnionId: app.data.unionid,
-        visitorName: that.data.username,
-        visitorMobile: that.data.userphone,
-        visitDay: that.data.date,
-        startTime: that.data.time,
-        endTime: that.data.time1,
-        carNum: that.data.car,
-        reason: that.data.text
-      },
-      success: function(res) {
-        if(res.data.code === 1000) {
-          wx.showToast({
-            title: '申请成功',
-            icon: 'none',
-            duration: 1000,
-            mask: true
-          })
-          setTimeout(function() {
-            wx.navigateBack({
-              delta: 1
-            })
-          },1400)
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 2000,
-            mask: true
-          })
-        }
+    var username = that.data.username;
+    var userphone = that.data.userphone;
+    var date = that.data.date;
+    var text = that.data.text;
+    if (!username) {
+      wx.showToast({
+        title: '请输入访客姓名',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (!userphone) {
+      wx.showToast({
+        title: '请输入访客手机号',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (date == '请选择 ▼') {
+      wx.showToast({
+        title: '请输入访客到访日期',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (!text) {
+      wx.showToast({
+        title: '请输入访客访问原因',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+    var num = /^[0-9]*$/;
+    var regu = /^[a-zA-Z\u4e00-\u9fa5]+$/;
+    if (myreg.test(that.data.userphone) && (num.test(that.data.username) || regu.test(that.data.username))) {
+      if (username != '' && userphone != '' && date != '请选择 ▼' && text != '') {
+        wx.request({
+          url: https + '/visitorMini/applyVisitProperty',
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+          },
+          data: {
+            villageId: app.data.id,
+            visitorUnionId: app.data.unionid,
+            visitorName: that.data.username,
+            visitorMobile: that.data.userphone,
+            visitDay: that.data.date,
+            startTime: that.data.time,
+            endTime: that.data.time1,
+            carNum: that.data.car,
+            reason: that.data.text
+          },
+          success: function(res) {
+            if (res.data.code === 1000) {
+              wx.showToast({
+                title: '申请成功',
+                icon: 'none',
+                duration: 1000,
+                mask: true
+              })
+              setTimeout(function() {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }, 1400)
+            } else {
+              wx.showToast({
+                title: res.data.message,
+                icon: 'none',
+                duration: 2000,
+                mask: true
+              })
+            }
+          }
+        })
       }
-    })
+    } else {
+      wx.showToast({
+        title: '姓名或手机号格式不正确',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+    }
   },
   // 年月日
   bindDateChange(e) {
@@ -108,56 +162,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

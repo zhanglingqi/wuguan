@@ -62,9 +62,16 @@ Page({
             })
           } else {
             wx.navigateTo({
-              url: "/pages/payment/payment?carNum=" + res.data.data.carNum + "&orderId=" + res.data.data.orderId + "&serviceDay=" + res.data.data.serviceDay + "&serviceHoursAndMinute=" + res.data.data.serviceHoursAndMinute + "&serviceTime=" + res.data.data.serviceTime + "&hour=" + that.data.hour + "&totalFee=" + res.data.data.totalFee,
+              url: "/pages/payment/payment?carNum=" + res.data.data.carNum + "&orderId=" + res.data.data.orderId + "&serviceDay=" + res.data.data.serviceDay + "&serviceHoursAndMinute=" + res.data.data.serviceHoursAndMinute + "&serviceTime=" + res.data.data.serviceTime + "&hour=" + that.data.hour + "&totalFee=" + res.data.data.totalFee + "&out_trade_no=" + res.data.data.out_trade_no ,
             })
           }
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000,
+            mask: true
+          })
         }
       }
     })
@@ -100,6 +107,22 @@ Page({
                     app.data.openid = res.data.data.openid;
                     app.data.unionid = res.data.data.unionid;
                   }
+                  wx.getStorage({
+                    key: app.data.openid + app.data.id,
+                    success: function (res) {
+                      that.setData({
+                        plates: res.data
+                      })
+                    },
+                  })
+                  wx.getStorage({
+                    key: app.data.openid + app.data.id + 1,
+                    success: function (res) {
+                      that.setData({
+                        carpai: res.data
+                      })
+                    },
+                  })
                 }
               })
             }
@@ -141,7 +164,7 @@ Page({
   onShow: function () {
     var that = this;
     wx.getStorage({
-      key: 'carNo',
+      key: app.data.openid + app.data.id,
       success: function (res) {
         that.setData({
           plates: res.data
@@ -149,15 +172,13 @@ Page({
       },
     })
     wx.getStorage({
-      key: 'carpai',
+      key: app.data.openid + app.data.id + 1,
       success: function (res) {
         that.setData({
           carpai: res.data
         })
       },
     })
-  
-    
   },
 
   /**

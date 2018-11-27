@@ -71,3 +71,10 @@ page{
   width: 100%;
   position: fixed;
 }
+.bacnon {
+  font-size: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80rpx;
+}

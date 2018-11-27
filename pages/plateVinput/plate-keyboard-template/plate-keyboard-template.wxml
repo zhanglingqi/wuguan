@@ -67,5 +67,5 @@
             </view>
         </view>
     </view>
-     <button class='submitBtn' catchtap='onSubmitBtnTap'>绑 定</button>
+     <button class='submitBtn' catchtap='onSubmitBtnTap'>确 定</button>
 </template>

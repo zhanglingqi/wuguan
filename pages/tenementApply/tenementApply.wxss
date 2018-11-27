@@ -7,7 +7,6 @@
 }
 .ownerVisit {
   padding: 40rpx;
-  border-bottom: 1px dotted #FAD56A;
   overflow: hidden;
   position: relative;
 }

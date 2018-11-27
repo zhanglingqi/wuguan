@@ -14,7 +14,8 @@
             <text class='ownerVisit_3'>{{seartTime}}</text>
             <text class='ownerVisit_4' decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;</text>
             <text class='ownerVisit_3'>{{endTime}}\n</text>
-            <view class='ownerVisit_3'>{{car}}</view>
+            <view class='ownerVisit_3' wx:if="{{ car == '' }}">-------</view>
+            <view class='ownerVisit_3' wx:else="{{ car != '' }}">{{car}}</view>
         </view>
     </view>
     <view class='ownerVisit'>

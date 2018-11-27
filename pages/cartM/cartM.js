@@ -7,7 +7,7 @@ Page({
       // 循环列表的数组
     record:[],
     // 默认分页
-    limit:7,
+    limit:9999,
   },
     getGrounpList: function() {
       var that = this;
@@ -26,6 +26,7 @@ Page({
           limit: that.data.limit
         },
         success: function (res) {
+          console.log(res)
           if (res.data.code === 1000) {
             that.setData({
               record: res.data.data
@@ -40,7 +41,6 @@ Page({
   onLoad: function (options) {
     var that = this;
     that.getGrounpList()
-    console.log(that.data.record)
   },
 
   /**
@@ -82,19 +82,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    var that = this;
-    this.setData({
-      limit: that.data.limit+=5
-    })
-    wx.showLoading({
-      title: 'loading...',
-    });
-    setTimeout(function(){
-      that.getGrounpList()
-      wx.hideLoading()
-    },500)
-   
-
+    // var that = this;
+    // this.setData({
+    //   limit: that.data.limit+=5
+    // })
+    // wx.showLoading({
+    //   title: 'loading...',
+    // });
+    // setTimeout(function(){
+    //   that.getGrounpList()
+    //   wx.hideLoading()
+    // },500)
   },
   
 

@@ -140,3 +140,7 @@ margin: 15rpx 30rpx;
   justify-content: center;
   align-items: center;
 }
+.add_88 {
+  width: 35rpx;
+  height: 36rpx;
+}

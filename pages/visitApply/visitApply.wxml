@@ -22,7 +22,7 @@
               <text>（选填）</text>
             </picker>
             </view>
-            <input class='ownerVisit_3' placeholder='请输入（进出车场凭证）' onkeyup="this.value=this.value.toUpperCase()" bindinput="carNumber"></input>
+            <input class='ownerVisit_3' disabled='false' placeholder='请输入（进出车场凭证）'  value='{{car}}'  catchtap='carTab'></input>
         </form> 
     </view>
     <view class='ownerVisi2'>
@@ -35,7 +35,7 @@
           <form class='ownerVisit1'>
             <input class='ownerVisit_3' placeholder='请输入' bindinput="ownerName"></input>
             <input class='ownerVisit_3' placeholder='请输入' bindinput="ownerPhone" type='number'></input>
-            <picker  bindchange="bindPickerChange"   value="{{index}}" range="{{array1}}">
+            <picker  bindchange="bindPickerChange"  value="{{index}}" range="{{array1}}">
               <input class="ownerVisit_3"  disabled='false' placeholder='请选择 ▼' value='{{array1[index]}}'></input>
             </picker>
             <picker  bindchange="bindPickerChange1" value="{{index1}}" range="{{array2}}">

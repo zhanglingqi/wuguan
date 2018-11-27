@@ -13,87 +13,17 @@ Page({
     var that = this;
     var https = app.globalData.url;
     if (e.detail.userInfo) {
-      console.log(1)
-      if (app.data.flag) {
-        wx.login({
-          success: function (res) {
-            wx.getUserInfo({
-              success: function (resquest) {
-                wx.request({
-                  url: https + '/carparkMini/getWxUserInfo',
-                  method: 'POST',
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                  },
-                  data: {
-                    code: res.code,
-                    encryptedData: resquest.encryptedData,
-                    iv: resquest.iv
-                  },
-                  success: function (res) {
-                    console.log(res)
-                    if (res.data.code === 1000) {
-                      app.data.openid = res.data.data.openid;
-                      app.data.unionid = res.data.data.unionid;
-                    }
-                  }
-                })
-              }
-            })
-            app.data.flag = false
-          }
-        })
-      }
-      setTimeout(function() {
         wx.navigateTo({
           url: '/pages/owner/owner',
         })
-      },500)
-
     }
   },
   // 物业
   bindGetUserInfo1(e) {
-    var that = this;
-    var https = app.globalData.url;
     if (e.detail.userInfo) {
-      if (app.data.flag) {
-        wx.login({
-          success: function (res) {
-            wx.getUserInfo({
-              success: function (resquest) {
-                wx.request({
-                  url: https + '/carparkMini/getWxUserInfo',
-                  method: 'POST',
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded',
-                  },
-                  data: {
-                    code: res.code,
-                    encryptedData: resquest.encryptedData,
-                    iv: resquest.iv
-                  },
-                  success: function (res) {
-                    console.log(res)
-                    if (res.data.code === 1000) {
-                      app.data.openid = res.data.data.openid;
-                      console.log(1)
-                      app.data.unionid = res.data.data.unionid;
-                      console.log(2)
-                    }
-                  }
-                })
-              }
-            })
-            app.data.flag = false
-          }
-        })
-      }
-      setTimeout(function() {
         wx.navigateTo({
           url: '/pages/tenement/tenement',
-        },500)
-      })
+        })
     }
   },
   // 停车场
@@ -106,6 +36,34 @@ Page({
       })
     }
   },
+  //首页渲染请求
+  indexF:function() {
+    var https = app.globalData.url;
+    var that = this;
+    var viildid = wx.getStorageSync('id')
+    console.log( "赋值 "+viildid)
+    wx.request({
+      url: https + '/carparkMini/getVillageMsg',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+      data: {
+        propertyId: viildid
+      },
+      success: function (res) {
+        if (res.data.code === 1000) {
+          app.data.id = res.data.data.id;
+          app.data.propertyId = res.data.data.propertyId;
+          app.data.propertyName = res.data.data.propertyName;
+          app.data.villageName = res.data.data.villageName;
+          that.setData({
+            hoem: res.data.data.propertyName
+          })
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -113,28 +71,36 @@ Page({
     var https = app.globalData.url;
     var that = this;
     var scene = decodeURIComponent(options.scene);
-    // var query = options.query.propertyId
-   wx.request({
-     url: https +'/carparkMini/getVillageMsg',
-     method:'POST',
-     header:{
-       'content-type': 'application/x-www-form-urlencoded',
-     },
-     data:{
-       propertyId: scene
-     },
-     success:function(res) {
-       if(res.data.code === 1000) {
-         app.data.id = res.data.data.id;
-         app.data.propertyId = res.data.data.propertyId;
-         app.data.propertyName = res.data.data.propertyName;
-         app.data.villageName = res.data.data.villageName;
-         that.setData({
-           hoem: res.data.data.propertyName
-         })
-       }
-     }
-   })
+    if (scene!= 'undefined') {
+      console.log(1)
+      wx.request({
+        url: https + '/carparkMini/getVillageMsg',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: {
+          propertyId: scene
+        },
+        success: function (res) {
+          if (res.data.code === 1000) {
+            app.data.id = res.data.data.id;
+            app.data.propertyId = res.data.data.propertyId;
+            app.data.propertyName = res.data.data.propertyName;
+            app.data.villageName = res.data.data.villageName;
+            that.setData({
+              hoem: res.data.data.propertyName
+            })
+          }
+          wx.setStorageSync('id', scene)
+        }
+      })
+      
+    } else {
+      console.log(0)
+      that.indexF();
+    }
+   
   },
 
   /**
@@ -148,7 +114,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
     
   },
 
