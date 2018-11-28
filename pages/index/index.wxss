@@ -12,11 +12,6 @@
 display: block;
 margin: 15rpx 30rpx;
 }
-.title_1,.title_5 {
-  font-size: 32rpx;
-  height: 53rpx;
-  line-height: 53rpx;
-}
 .title_2 {
   font-size: 24rpx;
   color: #9a9a9a;
@@ -25,13 +20,11 @@ margin: 15rpx 30rpx;
 }
 .title_3 {
   font-size: 24rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  margin-left: 5%;
 }
 .title_5 {
-  position: absolute;
-  right: 29rpx;
-  bottom: 31rpx;
+  font-size: 32rpx;
+  margin-left: 42%;
 }
 .banner {
   width: 90%; 
@@ -43,26 +36,29 @@ margin: 15rpx 30rpx;
   position: relative;
   overflow: hidden;
 }
+.carr {
+  padding: 27rpx 27rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
 .car_1 {
   float: left;
   width: 45rpx;
   height: 36rpx;
-  margin-top: 29rpx;
-  margin-left: 27rpx;
+  line-height: 36rpx;
 }
 .car_2 {
   float: left;
-  height: 60rpx;
+  height: 36rpx;
+  line-height: 36rpx;
   font-size: 32rpx;
   color: #000000;
-  margin-top: 26rpx;
-  margin-left: 30rpx;
+  margin-left: 20rpx;
 }
 .more {
   display: flex;
   width: 78%;
   border-top: 1px solid #f6f6f6;
-  margin-top: 10rpx;
   justify-content: center;
   align-items: center;
   padding: 52rpx;
@@ -81,8 +77,7 @@ margin: 15rpx 30rpx;
   height: 34rpx;
   line-height: 34rpx;
   float: right;
-  padding-top: 30rpx;
-  padding-right: 20rpx;
+  padding-top: 5rpx;
 }
 .icon-tianjia {
   color: #f5d24d;

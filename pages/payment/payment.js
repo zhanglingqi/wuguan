@@ -77,14 +77,12 @@ Page({
                     wx.showToast({
                       title: '支付成功',
                       icon: 'none',
-                      duration: 1000,
+                      duration: 500,
                       mask: true
                     })
-                    setTimeout(function() {
                     wx.navigateBack({
                         delta: 1
                       })
-                    },1000)
                   },
                   fail:function() {
                     wx.showToast({
@@ -116,29 +114,6 @@ Page({
         }
       }
     })
-    // wx.request({
-    //   url: https1 + '/spPay/orderquery',
-    //   method: 'POST',
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded',
-    //   },
-    //   data: {
-    //     out_trade_no: that.data.out_trade_no
-    //   },
-    //   success: function (res) {
-    //     console.log(res)
-    //     if (res.code === 1000) {
-    //       console.log("支付成功" + res.code)
-    //       wx.navigateBack({
-    //         delta: 1
-    //       })
-    //     }
-    //   },
-      
-    // })
-    // that.setData({
-    //   loading: false
-    // })
   },
   //点击我显示底部弹出框
   clickme: function () {

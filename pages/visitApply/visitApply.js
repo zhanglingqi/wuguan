@@ -86,11 +86,40 @@ Page({
       })
       return false;
     }
+    var nameText = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
+    if (!nameText.test(that.data.username)) {
+      wx.showToast({
+        title: '访客姓名格式不正确',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (that.data.username.length > 10) {
+      wx.showToast({
+        title: '访客姓名长度不能超过10个字符',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
     if (!userphone) {
       wx.showToast({
         title: '请输入访客手机号',
         icon: 'none',
         duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
+    if (!mobile.test(that.data.userphone)) {
+      wx.showToast({
+        title: '访客手机号格式不正确',
+        icon: 'none',
+        duration: 2000,
         mask: true
       })
       return false;
@@ -113,11 +142,29 @@ Page({
       })
       return false;
     }
+    if (!nameText.test(that.data.ownername)) {
+      wx.showToast({
+        title: '业主姓名格式不正确',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
     if (!ownerphone) {
       wx.showToast({
         title: '请输入业主手机号',
         icon: 'none',
         duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (!mobile.test(that.data.ownerphone)) {
+      wx.showToast({
+        title: '手机号格式不正确',
+        icon: 'none',
+        duration: 2000,
         mask: true
       })
       return false;
@@ -145,53 +192,6 @@ Page({
         title: '请输入业主房间',
         icon: 'none',
         duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    var nameText = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
-    if (!nameText.test(that.data.username)) {
-      wx.showToast({
-        title: '姓名格式不正确',
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    if (that.data.username.length > 10) {
-      wx.showToast({
-        title: '姓名长度不能超过10个字符',
-        icon: 'none',
-        duration: 2000,
-        mask: true
-      })
-      return false;
-    }
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
-    if (!mobile.test(that.data.userphone)) {
-      wx.showToast({
-        title: '手机号格式不正确',
-        icon: 'none',
-        duration: 2000,
-        mask: true
-      })
-      return false;
-    }
-    if (!nameText.test(that.data.ownername)) {
-      wx.showToast({
-        title: '姓名格式不正确',
-        icon: 'none',
-        duration: 1000,
-        mask: true
-      })
-      return false;
-    }
-    if (!mobile.test(that.data.ownerphone)) {
-      wx.showToast({
-        title: '手机号格式不正确',
-        icon: 'none',
-        duration: 2000,
         mask: true
       })
       return false;
@@ -270,16 +270,7 @@ Page({
       index: e.detail.value
     })
     that.setData({
-      ary: []
-    })
-    that.setData({
-      array2: []
-    })
-    that.setData({
       array3: []
-    })
-    that.setData({
-      array2Id: []
     })
     wx.request({
       url: https + '/visitorMini/getCellList',
@@ -292,6 +283,15 @@ Page({
         towerId: that.data.array1Id[that.data.index]
       },
       success: function(res) {
+        that.setData({
+          ary: []
+        })
+        that.setData({
+          array2: []
+        })
+        that.setData({
+          array2Id: []
+        })
         if (res.data.code === 1000) {
           var arr = res.data.data;
           for (var i = 0; i < arr.length; i++) {
@@ -302,7 +302,6 @@ Page({
             array2: that.data.ary
           })
         }
-
       }
     })
   },
@@ -393,14 +392,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    console.log(1)
   },
 
   /**

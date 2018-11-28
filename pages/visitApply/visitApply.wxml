@@ -13,11 +13,11 @@
               <text>{{date}}</text>
             </picker>
             <view class='dataTime'> 
-                <picker mode="time" class='ownerVisit_3' value="{{time}}"bindchange="bindTimeChange">
+                <picker mode="time" class='ownerVisit_3'start="09:01" end="21:01" value="{{time}}"bindchange="bindTimeChange">
               <text>{{time}}</text>
             </picker>
             <text class='ownerVisit_4' decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;</text>
-            <picker mode="time" class='ownerVisit_3' value="{{time1}}" bindchange="bindTimeChange1">
+            <picker mode="time" class='ownerVisit_3' start="09:01" end="21:01" value="{{time1}}" bindchange="bindTimeChange1">
               <text>{{time1}}</text>
               <text>（选填）</text>
             </picker>
@@ -38,7 +38,7 @@
             <picker  bindchange="bindPickerChange" value="{{index}}" range="{{array1}}">
               <input class="ownerVisit_3"  disabled='false' placeholder='请选择 ▼' value='{{array1[index]}}'></input>
             </picker>
-            <picker  bindchange="bindPickerChange1" catchtap='element' value="{{index1}}" range="{{array2}}">
+            <picker  bindchange="bindPickerChange1" value="{{index1}}" range="{{array2}}">
               <input class="ownerVisit_3" disabled='false' placeholder='请选择 ▼' value='{{array2[index1]}}'></input>
             </picker>
             <picker bindchange="bindPickerChange2" value="{{index2}}" range="{{array3}}">

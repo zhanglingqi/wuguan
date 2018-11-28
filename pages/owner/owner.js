@@ -10,9 +10,9 @@ Page({
     limit:99999
   },
   getGrounpList:function() {
-    wx.showLoading({
-      title: 'loading...',
-    });
+    // wx.showLoading({
+    //   title: 'loading...',
+    // });
     var that = this;
     var https = app.globalData.url;
     wx.request({
@@ -35,7 +35,7 @@ Page({
             record: res.data.data
           })
         }
-        wx.hideLoading()
+        // wx.hideLoading()
       }
     })
   },
@@ -59,6 +59,7 @@ Page({
   onShow: function () {
     var that = this;
     var https = app.globalData.url;
+    if (app.data.flag) {
       wx.login({
         success: function (res) {
           wx.getUserInfo({
@@ -87,6 +88,10 @@ Page({
           })
         }
       })
+      app.data.flag = false
+    } else {
+      that.getGrounpList()
+    }
   },
 
   /**

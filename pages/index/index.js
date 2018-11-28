@@ -79,6 +79,15 @@ Page({
               duration: 2000,
               mask: true
             })
+          } 
+          if (res.data.data.totalFee == 0) {
+            wx.showToast({
+              title: '您刚进场，无法出场',
+              icon: 'none',
+              duration: 2000,
+              mask: true
+            })
+            return false;
           } else {
             wx.navigateTo({
               url: "/pages/payment/payment?carNum=" + res.data.data.carNum + "&orderId=" + res.data.data.orderId + "&serviceDay=" + res.data.data.serviceDay + "&serviceHoursAndMinute=" + res.data.data.serviceHoursAndMinute + "&serviceTime=" + res.data.data.serviceTime + "&hour=" + that.data.hour + "&totalFee=" + res.data.data.totalFee + "&out_trade_no=" + res.data.data.out_trade_no ,
