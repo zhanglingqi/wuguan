@@ -149,60 +149,95 @@ Page({
       })
       return false;
     }
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    var num = /^[0-9]*$/;
-    var regu = /^[a-zA-Z\u4e00-\u9fa5]+$/;
-    if (myreg.test(that.data.userphone) && (num.test(that.data.username) || regu.test(that.data.username))) {
-      if (username != '' && userphone != '' && ownername != '' && ownerphone != '' && date != '请选择 ▼' && array1.length != 0 && array2.length != 0 && array3.length != 0) {
-        wx.request({
-          url: https + '/visitorMini/applyVisitOwner',
-          method: 'POST',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          data: {
-            villageId: app.data.id,
-            roomId: that.data.array3Id[that.data.index2],
-            ghsUserName: that.data.ownername,
-            ghsUserMobile: that.data.ownerphone,
-            visitorUnionId: app.data.unionid,
-            visitorName: that.data.username,
-            visitorMobile: that.data.userphone,
-            visitDay: that.data.date,
-            startTime: that.data.time,
-            endTime: that.data.time1,
-            carNum: that.data.car
-          },
-          success: function(res) {
-            if (res.data.code === 1000) {
-              wx.showToast({
-                title: '申请成功',
-                icon: 'none',
-                duration: 1400,
-                mask: true
-              })
-              setTimeout(function() {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1400)
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                icon: 'none',
-                duration: 2000,
-                mask: true
-              })
-            }
-          }
-        })
-      }
-    } else {
+    var nameText = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
+    if (!nameText.test(that.data.username)) {
       wx.showToast({
-        title: '姓名或手机号格式不正确',
+        title: '姓名格式不正确',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (that.data.username.length > 10) {
+      wx.showToast({
+        title: '姓名长度不能超过10个字符',
         icon: 'none',
         duration: 2000,
         mask: true
+      })
+      return false;
+    }
+    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
+    if (!mobile.test(that.data.userphone)) {
+      wx.showToast({
+        title: '手机号格式不正确',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (!nameText.test(that.data.ownername)) {
+      wx.showToast({
+        title: '姓名格式不正确',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (!mobile.test(that.data.ownerphone)) {
+      wx.showToast({
+        title: '手机号格式不正确',
+        icon: 'none',
+        duration: 2000,
+        mask: true
+      })
+      return false;
+    }
+    if (username != '' && userphone != '' && ownername != '' && ownerphone != '' && date != '请选择 ▼' && array1.length != 0 && array2.length != 0 && array3.length != 0) {
+      wx.request({
+        url: https + '/visitorMini/applyVisitOwner',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: {
+          villageId: app.data.id,
+          roomId: that.data.array3Id[that.data.index2],
+          ghsUserName: that.data.ownername,
+          ghsUserMobile: that.data.ownerphone,
+          visitorUnionId: app.data.unionid,
+          visitorName: that.data.username,
+          visitorMobile: that.data.userphone,
+          visitDay: that.data.date,
+          startTime: that.data.time,
+          endTime: that.data.time1,
+          carNum: that.data.car
+        },
+        success: function (res) {
+          if (res.data.code === 1000) {
+            wx.showToast({
+              title: '申请成功',
+              icon: 'none',
+              duration: 1400,
+              mask: true
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1400)
+          } else {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000,
+              mask: true
+            })
+          }
+        }
       })
     }
   },
@@ -230,9 +265,21 @@ Page({
   bindPickerChange(e) {
     var https = app.globalData.url;
     var that = this;
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('楼号 + ', e.detail.value)
     this.setData({
       index: e.detail.value
+    })
+    that.setData({
+      ary: []
+    })
+    that.setData({
+      array2: []
+    })
+    that.setData({
+      array3: []
+    })
+    that.setData({
+      array2Id: []
     })
     wx.request({
       url: https + '/visitorMini/getCellList',
@@ -245,12 +292,6 @@ Page({
         towerId: that.data.array1Id[that.data.index]
       },
       success: function(res) {
-        that.setData({
-          ary: []
-        })
-        that.setData({
-          array2Id: []
-        })
         if (res.data.code === 1000) {
           var arr = res.data.data;
           for (var i = 0; i < arr.length; i++) {

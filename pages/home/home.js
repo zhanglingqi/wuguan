@@ -72,7 +72,6 @@ Page({
     var that = this;
     var scene = decodeURIComponent(options.scene);
     if (scene!= 'undefined') {
-      console.log(1)
       wx.request({
         url: https + '/carparkMini/getVillageMsg',
         method: 'POST',
@@ -97,7 +96,6 @@ Page({
       })
       
     } else {
-      console.log(0)
       that.indexF();
     }
    

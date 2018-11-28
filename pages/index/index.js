@@ -26,10 +26,29 @@ Page({
       content: '是否要删除车牌号',
       success:function(res) {
         if(res.confirm) {
-          wx.clearStorage()
-          wx.redirectTo({
-            url: '/pages/index/index',
-          });
+          // wx.clearStorage()
+          // wx.redirectTo({
+          //   url: '/pages/index/index',
+          // });
+          wx.removeStorage({
+            key: app.data.openid + app.data.id + 1,
+            success: function(res) {
+              wx.removeStorage({
+                key: app.data.openid + app.data.id,
+                success: function (res) {
+                  wx.redirectTo({
+                    url: '/pages/index/index',
+                  });
+                },
+              })
+            },
+          })
+          wx.removeStorage({
+            key: app.data.openid + app.data.id,
+            success: function (res) {
+
+            },
+          })
         }
       }
     })

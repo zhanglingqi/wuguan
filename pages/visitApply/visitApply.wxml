@@ -35,10 +35,10 @@
           <form class='ownerVisit1'>
             <input class='ownerVisit_3' placeholder='请输入' bindinput="ownerName"></input>
             <input class='ownerVisit_3' placeholder='请输入' bindinput="ownerPhone" type='number'></input>
-            <picker  bindchange="bindPickerChange"  value="{{index}}" range="{{array1}}">
+            <picker  bindchange="bindPickerChange" value="{{index}}" range="{{array1}}">
               <input class="ownerVisit_3"  disabled='false' placeholder='请选择 ▼' value='{{array1[index]}}'></input>
             </picker>
-            <picker  bindchange="bindPickerChange1" value="{{index1}}" range="{{array2}}">
+            <picker  bindchange="bindPickerChange1" catchtap='element' value="{{index1}}" range="{{array2}}">
               <input class="ownerVisit_3" disabled='false' placeholder='请选择 ▼' value='{{array2[index1]}}'></input>
             </picker>
             <picker bindchange="bindPickerChange2" value="{{index2}}" range="{{array3}}">

@@ -84,58 +84,75 @@ Page({
       })
       return false;
     }
-    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
-    var num = /^[0-9]*$/;
-    var regu = /^[a-zA-Z\u4e00-\u9fa5]+$/;
-    if (myreg.test(that.data.userphone) && (num.test(that.data.username) || regu.test(that.data.username))) {
-      if (username != '' && userphone != '' && date != '请选择 ▼' && text != '') {
-        wx.request({
-          url: https + '/visitorMini/applyVisitProperty',
-          method: 'POST',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-          },
-          data: {
-            villageId: app.data.id,
-            visitorUnionId: app.data.unionid,
-            visitorName: that.data.username,
-            visitorMobile: that.data.userphone,
-            visitDay: that.data.date,
-            startTime: that.data.time,
-            endTime: that.data.time1,
-            carNum: that.data.car,
-            reason: that.data.text
-          },
-          success: function(res) {
-            if (res.data.code === 1000) {
-              wx.showToast({
-                title: '申请成功',
-                icon: 'none',
-                duration: 1000,
-                mask: true
-              })
-              setTimeout(function() {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }, 1400)
-            } else {
-              wx.showToast({
-                title: res.data.message,
-                icon: 'none',
-                duration: 2000,
-                mask: true
-              })
-            }
-          }
-        })
-      }
-    } else {
+    var nameText = /^[A-Za-z0-9\u4e00-\u9fa5]+$/;
+    if (!nameText.test(that.data.username)) {
       wx.showToast({
-        title: '姓名或手机号格式不正确',
+        title: '姓名格式不正确',
         icon: 'none',
-        duration: 2000,
+        duration: 1000,
         mask: true
+      })
+      return false;
+    }
+    if (that.data.username.length > 10) {
+      wx.showToast({
+        title: '姓名长度不能超过10个字符',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
+    if ( !mobile.test(that.data.userphone)) {
+      wx.showToast({
+        title: '电话号格式不正确',
+        icon: 'none',
+        duration: 1000,
+        mask: true
+      })
+      return false;
+    }
+    if (username != '' && userphone != '' && date != '请选择 ▼' && text != '') {
+      wx.request({
+        url: https + '/visitorMini/applyVisitProperty',
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+        data: {
+          villageId: app.data.id,
+          visitorUnionId: app.data.unionid,
+          visitorName: that.data.username,
+          visitorMobile: that.data.userphone,
+          visitDay: that.data.date,
+          startTime: that.data.time,
+          endTime: that.data.time1,
+          carNum: that.data.car,
+          reason: that.data.text
+        },
+        success: function (res) {
+          if (res.data.code === 1000) {
+            wx.showToast({
+              title: '申请成功',
+              icon: 'none',
+              duration: 1000,
+              mask: true
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1400)
+          } else {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000,
+              mask: true
+            })
+          }
+        }
       })
     }
   },
