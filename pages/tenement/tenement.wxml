@@ -2,9 +2,9 @@
 <view class='fatt'>
     <view class='ss'>
     <scroll-view class='content' scroll-y="{{true}}">
-      <!-- <view class='owner' url='../visitT/visitT' wx:if="{{record.length == 0}}" >
+      <view class='owner' url='../visitT/visitT' style="display:{{bottomHidden1}}" >
           <view class='bacnon' >暂无数据，请点击下方添加按添加信息</view>
-      </view> -->
+      </view>
       <view class='owner'  wx:for="{{ record }}"  wx:key="index" >
           <navigator url='../tenementT/tenementT?id={{ item.id }}' hover-class='none'>
             <view class='owner_1'> 访问 物业</view>
@@ -15,7 +15,6 @@
                 <view class='tiaozhuan_1' wx:if="{{ item.state == 3 }}" >驳回</view>
                 <view class='iconfont icon-youjiantou tiaozhuan_2'></view>
             </view>
-            <view class='bacnon' wx:if="{{item == null }}" >暂无数据，请点击下方添加按添加信息</view>
           </navigator>
       </view>
     </scroll-view>

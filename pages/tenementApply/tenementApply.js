@@ -103,7 +103,7 @@ Page({
       })
       return false;
     }
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
+    var mobile = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
     if ( !mobile.test(that.data.userphone)) {
       wx.showToast({
         title: '电话号格式不正确',

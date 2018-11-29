@@ -24,7 +24,7 @@ margin: 15rpx 30rpx;
 }
 .title_5 {
   font-size: 32rpx;
-  margin-left: 42%;
+  margin-left: 40%;
 }
 .banner {
   width: 90%; 

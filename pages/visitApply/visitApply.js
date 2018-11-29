@@ -9,6 +9,7 @@ Page({
     time: '00:00',
     time1: '24:00',
     value: '请选择 ▼',
+    item:[],
     array1: [],
     array1Id: [],
     // 暂存单元
@@ -114,7 +115,7 @@ Page({
       })
       return false;
     }
-    var mobile = /^[1][3,4,5,7,8][0-9]{9}$/
+    var mobile = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
     if (!mobile.test(that.data.userphone)) {
       wx.showToast({
         title: '访客手机号格式不正确',
@@ -269,9 +270,6 @@ Page({
     this.setData({
       index: e.detail.value
     })
-    that.setData({
-      array3: []
-    })
     wx.request({
       url: https + '/visitorMini/getCellList',
       method: 'POST',
@@ -284,10 +282,16 @@ Page({
       },
       success: function(res) {
         that.setData({
+          array3: []
+        })
+        that.setData({
           ary: []
         })
         that.setData({
           array2: []
+        })
+        that.setData({
+          index1: ''
         })
         that.setData({
           array2Id: []
@@ -328,6 +332,9 @@ Page({
       },
       success: function(res) {
         console.log(res)
+        that.setData({
+          index2: ''
+        })
         that.setData({
           romm: []
         })
@@ -398,7 +405,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log(1)
   },
 
   /**

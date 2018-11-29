@@ -1,6 +1,6 @@
 <view class='top'>
   <text class='title_1' >{{title}}停车场\n</text>
-  <text class='title_2'>停车费：{{hour}}元/小时\n</text>
+  <text class='title_2'>停车费：{{hour}}\n</text>
   <view>
     <text class='title_3'>总车位：{{total}}</text>
     <text class='title_5'>剩余车位：{{residue}}</text>

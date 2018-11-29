@@ -3,7 +3,7 @@
     <text class='payment_2'>{{ time1 }}</text>
     <text class='payment_3' decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;{{time2}}\n</text>
     <text class='payment_4'>{{ time3 }}\n</text>
-    <text class='payment_6'>停车费：{{ hour }}元/小时\n</text>
+    <text class='payment_6'>停车费：{{ hour }}\n</text>
     <!-- <text class='payment_7'>{{ moneyStart }}.00元</text>
     <view class='discounts' bindtap="clickme">
       <text class='discounts_1'>优惠卷</text>

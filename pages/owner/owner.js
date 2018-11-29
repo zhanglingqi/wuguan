@@ -7,7 +7,8 @@ Page({
   data: {
     record:[],
     // 访问业主姓名
-    limit:99999
+    limit:99999,
+    bottomHidden1: "none"
   },
   getGrounpList:function() {
     // wx.showLoading({
@@ -34,8 +35,29 @@ Page({
           that.setData({
             record: res.data.data
           })
-        }
-        // wx.hideLoading()
+          if (res.data.data.length > 0) {
+            that.setData({
+              bottomHidden1: 'none'
+            })
+          }
+          if (res.data.data.length == 0) {
+            that.setData({
+              bottomHidden1: 'block'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+          setTimeout(function() {
+            wx.navigateBack({
+              delta: 1
+            })
+          },1000)
+        } 
       }
     })
   },
@@ -113,6 +135,7 @@ Page({
    */
   onPullDownRefresh: function () {
     // this.getGrounpList()
+    wx.stopPullDownRefresh();//关闭下拉刷新
   },
 
   /**

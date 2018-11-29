@@ -14,7 +14,7 @@
             </view>
           </navigator>
       </view>
-      <view class='owner' url='../visitT/visitT' wx:if="{{record == null}}" >
+      <view class='owner' url='../visitT/visitT' style="display:{{bottomHidden1}}" >
           <view class='bacnon' >暂无数据，请点击下方添加按添加信息</view>
       </view>
     </scroll-view>

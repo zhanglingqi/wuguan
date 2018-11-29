@@ -68,17 +68,9 @@ Page({
     //提交事件
     onSubmitBtnTap: function() {
       if (this.data.inputPlate.plates.length === 7 || this.data.inputPlate.plates.length ===8) {
-        wx.showToast({
-          title: '绑定成功',
-          // icon: 'info',
-          duration: 1000,
-          mask: true
-        });
-        setTimeout(function () {
           wx.navigateBack({
             delta: 1
           })
-        }, 2000)
         //数组组装字符串
         var paltes = this.data.inputPlate.plates;
         var pai = paltes.join("");
@@ -101,5 +93,13 @@ Page({
         })
       }
       
-    }
+    },
+  /**
+* 页面相关事件处理函数--监听用户下拉动作
+*/
+  onPullDownRefresh: function () {
+    // this.init();//初始化页面的接口请求
+    wx.stopPullDownRefresh();//关闭下拉刷新
+
+  },
 })

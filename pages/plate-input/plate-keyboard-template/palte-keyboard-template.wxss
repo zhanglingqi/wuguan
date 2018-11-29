@@ -78,12 +78,8 @@
     margin-bottom: 15rpx;
 }
 .deleteImg image{
-    width: 55rpx;
-    height: 45rpx;
+    width: 35rpx;
+    height: 25rpx;
     margin-top: 15rpx;
     margin-left: 4rpx;
-}
-.imb {
-  width: 13rpx;
-  height: 13rpx;
 }

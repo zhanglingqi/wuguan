@@ -15,6 +15,7 @@
     align-self: center;
     font-size: 40rpx;
     color: #666;
+    border-radius:10rpx;
 }
 .imgs {
   width: 55rpx;

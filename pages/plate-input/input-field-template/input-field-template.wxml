@@ -8,5 +8,5 @@
             <view class="{{plates.length == 7 ? 'active-border-color':'dashed-border-color'}} 'newEnerge'"  wx:if="{{!plates[7]}}">
             <image class='imgs' src='../../images/xinnengyuan.png'></image>
             </view>
-        </view>
+      </view>
 </template>

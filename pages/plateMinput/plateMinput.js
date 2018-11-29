@@ -22,9 +22,6 @@ Page({
     isShowKeyboard: true, //是否显示键盘,默认显示
   },
   onLoad: function (options) {
-    // this.setData({
-    //   [plates]: options.car
-    // })
     app.data.carnum2 = options.car
   },
   onShow: function () {

@@ -6,12 +6,11 @@ Page({
    */
   data: {
     record: [],
-    limit: 999999
+    limit: 999999,
+    bottomHidden1: "none"
   },
   getGrounpList: function () {
-    // wx.showLoading({
-    //   title: 'loading...',
-    // });
+    console.log(1)
     var that = this;
     var https = app.globalData.url;
     wx.request({
@@ -33,8 +32,29 @@ Page({
           that.setData({
             record: res.data.data
           })
+          if (res.data.data.length > 0) {
+            that.setData({
+              bottomHidden1: 'none'
+            })
+          }
+          if (res.data.data.length == 0) {
+            that.setData({
+              bottomHidden1: 'block'
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 1000,
+            mask: true
+          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1000)
         }
-        // wx.hideLoading()
       }
     })
   },
@@ -42,7 +62,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+ console.log(222)
   },
 
   /**
@@ -111,7 +131,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    wx.stopPullDownRefresh();//关闭下拉刷新
   },
 
   /**

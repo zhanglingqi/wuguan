@@ -26,27 +26,17 @@ Page({
       content: '是否要删除车牌号',
       success:function(res) {
         if(res.confirm) {
-          // wx.clearStorage()
-          // wx.redirectTo({
-          //   url: '/pages/index/index',
-          // });
           wx.removeStorage({
             key: app.data.openid + app.data.id + 1,
             success: function(res) {
               wx.removeStorage({
                 key: app.data.openid + app.data.id,
                 success: function (res) {
-                  wx.redirectTo({
-                    url: '/pages/index/index',
-                  });
+                  that.setData({
+                    plates:''
+                  })
                 },
               })
-            },
-          })
-          wx.removeStorage({
-            key: app.data.openid + app.data.id,
-            success: function (res) {
-
             },
           })
         }
@@ -79,28 +69,22 @@ Page({
               duration: 2000,
               mask: true
             })
+            return false;
           } 
           if (res.data.data.totalFee == 0) {
             wx.showToast({
-              title: '您刚进场，无法出场',
+              title: '免费时段，无需支付',
               icon: 'none',
               duration: 2000,
               mask: true
             })
             return false;
-          } else {
+          }else {
             wx.navigateTo({
               url: "/pages/payment/payment?carNum=" + res.data.data.carNum + "&orderId=" + res.data.data.orderId + "&serviceDay=" + res.data.data.serviceDay + "&serviceHoursAndMinute=" + res.data.data.serviceHoursAndMinute + "&serviceTime=" + res.data.data.serviceTime + "&hour=" + that.data.hour + "&totalFee=" + res.data.data.totalFee + "&out_trade_no=" + res.data.data.out_trade_no ,
             })
           }
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 2000,
-            mask: true
-          })
-        }
+        } 
       }
     })
   },
@@ -171,7 +155,7 @@ Page({
       success: function (res) {
         if (res.data.code === 1000) {
           that.setData({
-            hour: res.data.data.intervalPrice,
+            hour: res.data.data.ruleDescription,
             total: res.data.data.tempCarportNumTotal,
             residue: res.data.data.tempCarportNumRemain
           })
